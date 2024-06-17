@@ -4,6 +4,7 @@ public class Crocodile implements BoardElement {
 
     private int startValue;
 
+
     public int getStartValue() {
         return startValue;
     }

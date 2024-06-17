@@ -21,7 +21,7 @@ public class SnakesAndLadders {
 
     public SnakesAndLadders(Config config) {
         this.config = config;
-        this.board = new Board(config.getSnakes(), config.getLadders(), config.getCrocodiles(), config.getMines());
+        this.board = new Board(config.getBoardElementMap());
         players = new LinkedList<>();
         listOfPlayer = new ArrayList<>();
         createPlayersForNewGame(config.getPlayers());
@@ -31,7 +31,8 @@ public class SnakesAndLadders {
 
     public SnakesAndLadders(Config config, int boardSize, int numOfSnakes, int noOfLadder, int noOfCrocodile, int noOfMine) {
         this.config = config;
-        this.board = generateRandomBoard(boardSize, numOfSnakes, noOfLadder, noOfCrocodile, noOfMine);
+       // this.board = generateRandomBoard(boardSize, numOfSnakes, noOfLadder, noOfCrocodile, noOfMine);
+        this.board = new Board(config.getBoardElementMap());
         players = new LinkedList<>();
         listOfPlayer = new ArrayList<>();
         createPlayersForNewGame(config.getPlayers());
@@ -128,64 +129,64 @@ public class SnakesAndLadders {
     }
 
 
-    private static Board generateRandomBoard(int boardSize, int numOfSnakes, int numOfLadders, int numOfCrocdile, int numOfMine) {
-        List<Snake> snakes = new ArrayList<>();
-        List<Ladder> ladders = new ArrayList<>();
-        List<Crocodile> crocodiles = new ArrayList<>();
-        List<Mine> mines = new ArrayList<>();
-        Random random = new Random();
-        Set<Integer> positionInUsed = new HashSet<>();
-
-        // Place snakes
-        for (int i = 0; i < numOfSnakes; i++) {
-            int head;
-            int tail;
-            do {
-                head = random.nextInt(boardSize * boardSize - 2) + 2;
-                tail = random.nextInt(head - 1);
-            } while (positionInUsed.contains(head) || positionInUsed.contains(tail));
-            System.out.println("position of snakes " + head + " " + tail);
-            snakes.add(new Snake(head, tail));
-            positionInUsed.add(head);
-            positionInUsed.add(tail);
-        }
-
-        // Place ladders (ensure they don't land on snakes)
-        for (int i = 0; i < numOfLadders; i++) {
-            int bottom;
-            int top;
-            do {
-                bottom = random.nextInt(boardSize * boardSize - 1) + 1;
-                top = random.nextInt(boardSize * boardSize - bottom) + bottom;
-            } while (positionInUsed.contains(bottom) || positionInUsed.contains(top));
-            System.out.println("position of ladder " + bottom + " " + top);
-            ladders.add(new Ladder(bottom, top));
-            positionInUsed.add(bottom);
-            positionInUsed.add(top);
-        }
-
-        for (int i = 0; i < numOfCrocdile; i++) {
-            int top;
-            do {
-                top = random.nextInt(boardSize * boardSize - 5) + 5;
-            } while (positionInUsed.contains(top));
-            System.out.println("position of crocodile " + top);
-            crocodiles.add(new Crocodile(top));
-            positionInUsed.add(top);
-        }
-        for (int i = 0; i < numOfMine; i++) {
-            int top;
-            do {
-                top = random.nextInt(boardSize * boardSize - 1) + 1;
-            } while (positionInUsed.contains(top));
-            System.out.println("position of mine " + top);
-            mines.add(new Mine(top));
-            positionInUsed.add(top);
-        }
-
-        return new Board(snakes, ladders, crocodiles, mines);
-
-    }
+//    private static Board generateRandomBoard(int boardSize, int numOfSnakes, int numOfLadders, int numOfCrocdile, int numOfMine) {
+//        List<Snake> snakes = new ArrayList<>();
+//        List<Ladder> ladders = new ArrayList<>();
+//        List<Crocodile> crocodiles = new ArrayList<>();
+//        List<Mine> mines = new ArrayList<>();
+//        Random random = new Random();
+//        Set<Integer> positionInUsed = new HashSet<>();
+//
+//        // Place snakes
+//        for (int i = 0; i < numOfSnakes; i++) {
+//            int head;
+//            int tail;
+//            do {
+//                head = random.nextInt(boardSize * boardSize - 2) + 2;
+//                tail = random.nextInt(head - 1);
+//            } while (positionInUsed.contains(head) || positionInUsed.contains(tail));
+//            System.out.println("position of snakes " + head + " " + tail);
+//            snakes.add(new Snake(head, tail));
+//            positionInUsed.add(head);
+//            positionInUsed.add(tail);
+//        }
+//
+//        // Place ladders (ensure they don't land on snakes)
+//        for (int i = 0; i < numOfLadders; i++) {
+//            int bottom;
+//            int top;
+//            do {
+//                bottom = random.nextInt(boardSize * boardSize - 1) + 1;
+//                top = random.nextInt(boardSize * boardSize - bottom) + bottom;
+//            } while (positionInUsed.contains(bottom) || positionInUsed.contains(top));
+//            System.out.println("position of ladder " + bottom + " " + top);
+//            ladders.add(new Ladder(bottom, top));
+//            positionInUsed.add(bottom);
+//            positionInUsed.add(top);
+//        }
+//
+//        for (int i = 0; i < numOfCrocdile; i++) {
+//            int top;
+//            do {
+//                top = random.nextInt(boardSize * boardSize - 5) + 5;
+//            } while (positionInUsed.contains(top));
+//            System.out.println("position of crocodile " + top);
+//            crocodiles.add(new Crocodile(top));
+//            positionInUsed.add(top);
+//        }
+//        for (int i = 0; i < numOfMine; i++) {
+//            int top;
+//            do {
+//                top = random.nextInt(boardSize * boardSize - 1) + 1;
+//            } while (positionInUsed.contains(top));
+//            System.out.println("position of mine " + top);
+//            mines.add(new Mine(top));
+//            positionInUsed.add(top);
+//        }
+//
+//        return new Board(snakes, ladders, crocodiles, mines);
+//
+//    }
 
 
 }

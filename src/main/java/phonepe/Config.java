@@ -1,29 +1,36 @@
 package phonepe;
 
-import phonepe.model.Crocodile;
-import phonepe.model.Mine;
-import phonepe.model.Snake;
-import phonepe.model.Ladder;
+import phonepe.model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 public class Config {
     private int numSnakes;
     private int numOfDice  ;
     private int numsOfCrocodile ;
     private int numsOfMines ;
 
-    private final List<Snake> snakes;
+//    private final List<Snake> snakes;
+//
+//    private final List<Crocodile> crocodiles;
+//    private final List<Mine> mines;
 
-    private final List<Crocodile> crocodiles;
-    private final List<Mine> mines;
+    public  List<BoardElement> getBoardElementMap() {
+        return boardElementList;
+    }
+
+    private final  List<BoardElement> boardElementList ;
+
+
 
     public Config() {
-        this.mines =  new ArrayList<>();
-        this.crocodiles = new ArrayList<>();
-        this.snakes = new ArrayList<>();
-        this.ladders = new ArrayList<>();
+      //  this.mines =  new ArrayList<>();
+     //   this.crocodiles = new ArrayList<>();
+     //   this.snakes = new ArrayList<>();
+     //   this.ladders = new ArrayList<>();
+        this.boardElementList = new ArrayList<>();
         this.players = new HashMap<>();
     }
 
@@ -46,13 +53,13 @@ public class Config {
         this.numsOfMines = numsOfMines;
     }
 
-    public List<Crocodile> getCrocodiles() {
-        return crocodiles;
-    }
+//   // public List<Crocodile> getCrocodiles() {
+//        return crocodiles;
+//    }
 
-    public List<Mine> getMines() {
-        return mines;
-    }
+//    public List<Mine> getMines() {
+//        return mines;
+//    }
 
     public int getBoardSize() {
         return boardSize;
@@ -81,7 +88,7 @@ public class Config {
     }
 
     private int numLadders;
-    private final List<Ladder> ladders;
+
     private int numPlayers;
     private final HashMap<String, Integer> players;
 
@@ -94,13 +101,13 @@ public class Config {
         this.numSnakes = numSnakes;
     }
 
-    public List<Snake> getSnakes() {
-        return snakes;
-    }
+//    public List<Snake> getSnakes() {
+//        return snakes;
+//    }
 
-    public void addSnake(int head, int tail) {
-        snakes.add(new Snake(head, tail));
-    }
+//    public void addSnake(int head, int tail) {
+//        snakes.add(new Snake(head, tail));
+//    }
 
     public int getNumLadders() {
         return numLadders;
@@ -110,20 +117,20 @@ public class Config {
         this.numLadders = numLadders;
     }
 
-    public List<Ladder> getLadders() {
-        return ladders;
-    }
-
-    public void addLadder(int bottom, int top) {
-        ladders.add(new Ladder(bottom, top));
-    }
-    public void addCrocodile(int startPosition) {
-        crocodiles.add(new Crocodile(startPosition));
-    }
-
-    public void addMine(int startPosition) {
-        mines.add(new Mine(startPosition));
-    }
+//    public List<Ladder> getLadders() {
+//        return ladders;
+//    }
+//
+//    public void addLadder(int bottom, int top) {
+//        ladders.add(new Ladder(bottom, top));
+//    }
+//    public void addCrocodile(int startPosition) {
+//        crocodiles.add(new Crocodile(startPosition));
+//    }
+//
+//    public void addMine(int startPosition) {
+//        mines.add(new Mine(startPosition));
+//    }
 
     public int getNumPlayers() {
         return numPlayers;

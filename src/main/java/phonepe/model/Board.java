@@ -13,32 +13,16 @@ public class Board {
      */
     private final Map<Integer, BoardElement> boardElementsMap;
 
-    public Board(List<Snake> snakes, List<Ladder> ladders, List<Crocodile> crocodiles, List<Mine> mines) {
+    public Board( List<BoardElement> boardElements) {
         boardElementsMap = new HashMap<>();
-        createBoardElementMap(snakes, ladders, crocodiles, mines);
+        createBoardElementMap(boardElements);
     }
 
-    private void createBoardElementMap(List<Snake> snakes, List<Ladder> ladders, List<Crocodile> crocodiles, List<Mine> mines) {
-        for (Snake snake : snakes) {
-            if (snake.getHead() < snake.getTail())
-                throw new InvalidBoardException("Snake end value is greater than start Value");
-            boardElementsMap.put(snake.getHead(), snake);
-        }
-        for (Ladder ladder : ladders) {
-            if (ladder.getStart() > ladder.getEnd())
-                throw new InvalidBoardException("Ladder end value is smaller than start Value");
-            boardElementsMap.put(ladder.getStart(), ladder);
+    private void createBoardElementMap(List<BoardElement> boardElements) {
+        for(BoardElement boardElement : boardElements){
+            boardElementsMap.put(boardElement.getStartValue() , boardElement);
         }
 
-        for (Crocodile crocodile : crocodiles) {
-            if (crocodile.getStartValue() < 5)
-                throw new InvalidBoardException("Crocodile value is less than 5");
-            boardElementsMap.put(crocodile.getStartValue(), crocodile);
-        }
-
-        for (Mine mine : mines) {
-            boardElementsMap.put(mine.getStartValue(), mine);
-        }
 
     }
 

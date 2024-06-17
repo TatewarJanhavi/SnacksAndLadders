@@ -26,6 +26,11 @@ public class Ladder implements BoardElement {
     }
 
     @Override
+    public int getStartValue() {
+        return start ;
+    }
+
+    @Override
     public String getBoardElementType() {
         return "LADDER" ;
     }

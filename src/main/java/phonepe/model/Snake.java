@@ -27,6 +27,11 @@ public class Snake implements BoardElement{
     }
 
     @Override
+    public int getStartValue() {
+        return head;
+    }
+
+    @Override
     public String getBoardElementType() {
         return "SNAKE" ;
     }
